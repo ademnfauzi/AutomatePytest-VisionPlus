@@ -1,0 +1,23 @@
+
+{
+    "FreeUser": [{
+        "username": "81715681854",
+        "password": "NDMyMUx1cGE="
+    }],
+    "PremiumUser": [{
+        "username": "8997777777",
+        "password": "NDMyMUx1cGE="
+    }],
+    "PremiumSportUser": [{
+        "username": "8999999999",
+        "password": "NDMyMUx1cGE="
+    }],
+    "FreeUserEmail": [{
+        "username": "baskaratimur5@gmail.com",
+        "password": "NDMyMUx1cGE="
+    }],
+    "euro": [{
+        "username": "testingsulkha9@gmail.com",
+        "password": "NDMyMUx1cGE="
+    }]
+}

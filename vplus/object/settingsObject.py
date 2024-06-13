@@ -1,0 +1,15 @@
+class objectSettings:
+    def __init__(self):
+        self.btnDisconnectAllMManageDevice = "//span[contains(text(),'Disconnect all')]"
+        self.goNotifications = "//span[contains(text(),'Notifications')]"
+        self.popUpNotifications = "//*[@id='notification-center']"
+        self.btnDisconnectAcceptModal = "//button[@data-cy='modal-accept']"
+        self.noDeviceConnectedTxt = "//div[contains(text(),'No devices connected')]"
+        self.goTransactionHistory = "//span[contains(text(),'Transaction history')]"
+        self.iconSettings = "//button[@data-cy='openUser']/md-icon"
+        self.modalManageDevice = "//md-dialog[@class='extended-info-modal _md md-transition-in']"
+        self.modalSettings = "//md-dialog[@class='user-settings-modal _md md-dialog-fullscreen md-content-overflow md-transition-in']"
+        self.menuSettings = "//button[@id='open-settings-button']"
+        self.clickConfigureDeleteAccount = "(//span[@translate=''] [text()='Configure'])[3]"
+        self.iconSettings2 = "//button[@aria-label='settings']/md-icon"
+        self.btnLogout = "//*[@id='logout-button']"
