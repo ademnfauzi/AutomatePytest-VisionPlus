@@ -13,7 +13,7 @@ class objectTransactionHistory:
         self.btnBuyAgain = "//button[contains(text(),'Buy Again')]"
         self.btnHelpCenter = "//button[contains(text(),'Help Center')]"
         self.txtGetInTouchWithUs = "//p[contains(text(),'Get in Touch With Us')]"
-        self.txtOtherPayment = "//p[contains(text(),'Other Payment')]"
+        self.txtPayment = "//p[contains(text(),'Payment')]"
         self.statusSuccess = "//button[2][@class = 'bg-[#0B5653]  border-[#07E3D0] text-white rounded-full border p-1.5']"
         self.statusPending = "//button[4][@class = 'bg-[#0B5653]  border-[#07E3D0] text-white rounded-full border p-1.5']"
         self.statusFailed = "//button[3][@class = 'bg-[#0B5653]  border-[#07E3D0] text-white rounded-full border p-1.5']"

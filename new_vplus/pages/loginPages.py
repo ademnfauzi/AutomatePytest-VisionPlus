@@ -138,7 +138,7 @@ class LoginPage:
             self.clickButtonLogin()
             
             # profile = ObjectChooseProfile(driver)
-            # profile.chooseProfileAfterLogin2()
+            # profile.chooseProfileAfterLogin()
             
             wait = WebDriverWait(self.driver, 5)
             # profile = objectChooseProfile()

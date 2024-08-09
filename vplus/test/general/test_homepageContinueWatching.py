@@ -16,7 +16,7 @@
 #     yield setup_driver.driver
 #     setup_driver.driver.quit()
 
-# def test_start(driver):
+# def test_login(driver):
 #     login = LoginPage(driver)
 #     role = "FreeUser"
 #     login.loginProcess(driver, role)

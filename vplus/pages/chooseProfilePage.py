@@ -10,6 +10,24 @@ class ChooseProfile:
     def __init__(self, driver):
         self.driver = driver
 
+    # def chooseProfileAfterLogin(self):
+    #     mainWindow = self.driver.window_handles[0]
+    #     self.driver.switch_to.window(mainWindow)
+    #     wait = WebDriverWait(self.driver, 10)
+        
+    #     profile = objectChooseProfile()
+    #     # time.sleep(3)
+        
+    #     try:
+    #         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, profile.checkedProfileFalse)))           
+    #         WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, profile.checkedProfileFalse))).click()
+    #     except:
+    #         pass
+        
+    #     # time.sleep(1)
+    #     WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, profile.imgChooseProfile))).click()
+        # time.sleep(1)
+        
     def chooseProfileAfterLogin(self):
         mainWindow = self.driver.window_handles[0]
         self.driver.switch_to.window(mainWindow)
@@ -25,31 +43,22 @@ class ChooseProfile:
             pass
         
         # time.sleep(1)
-        WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, profile.imgChooseProfile))).click()
-        # time.sleep(1)
-        
-    def chooseProfileAfterLogin2(self):
-        mainWindow = self.driver.window_handles[0]
-        self.driver.switch_to.window(mainWindow)
-        wait = WebDriverWait(self.driver, 10)
-        
-        profile = objectChooseProfile()
-        # time.sleep(3)
-        
         try:
-            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, profile.checkedProfileFalse)))           
-            WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, profile.checkedProfileFalse))).click()
+            WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, profile.imgChooseProfile))).click()
+            checkAssert = True            
         except:
-            pass
+            try:
+                WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, profile.imgChooseProfile2))).click()
+                checkAssert = True
+            except:
+                checkAssert = False
+        # time.sleep(1)
         
-        # time.sleep(1)
-        WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, profile.imgChooseProfile2))).click()
-        # time.sleep(1)
-            
+        return checkAssert    
+        
     def assertChooseProfile(self):
         # time.sleep(1)
         wait = WebDriverWait(self.driver, 5)
-        # profile = objectChooseProfile()
         login = objectLogin()
         try:
             # wait.until(EC.presence_of_element_located((By.XPATH, profile.imgChooseProfile)))

@@ -7,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from vplus.object.originalsObject import objectOriginals
 from vplus.object.liveTvObject import objectTV
 from vplus.object.loginObject import objectLogin
+from vplus.object.settingsObject import objectSettings
 from vplus.pages.loginPage import LoginPage
 
 class TvPage:
@@ -80,12 +81,41 @@ class TvPage:
             self.driver.find_element(By.XPATH, self.originals.btnConnectDevice).click()
         except:
             pass
+        
+    def managementDevice2(self):
+        settings = objectSettings()
+        try:
+            time.sleep(3)
+            self.wait.until(EC.visibility_of_element_located((By.XPATH, self.originals.btnGoToSettingsMaximumDevice))).click()
+            print("eksekusi max device")
+            time.sleep(2)
+            self.wait.until(EC.visibility_of_element_located((By.XPATH, settings.btnDisconnectAllMManageDevice))).click()
+            print('Go To Pop Up Settings For Check Device')
+            time.sleep(2)
+            self.driver.find_element(By.XPATH, settings.btnDisconnectAcceptModal).click()
+            print("eksekusi manage device kelar")
+            time.sleep(2)
+            self.driver.refresh()            
+        except:
+            pass
 
     def assertTvPlay(self):
         # time.sleep(60)
-        element = WebDriverWait(self.driver, 150).until(EC.presence_of_element_located((By.XPATH, self.tv.player)))
-        ActionChains(self.driver).move_to_element(element).perform()
-        return WebDriverWait(self.driver, 60).until(EC.visibility_of_element_located((By.XPATH, self.tv.tombolPause)))
+        try:
+            element = WebDriverWait(self.driver, 150).until(EC.presence_of_element_located((By.XPATH, self.tv.player)))
+            ActionChains(self.driver).move_to_element(element).perform()
+            WebDriverWait(self.driver, 60).until(EC.visibility_of_element_located((By.XPATH, self.tv.tombolPause)))
+            checkAssert = True
+        except:
+            try:
+                element = WebDriverWait(self.driver, 150).until(EC.presence_of_element_located((By.XPATH, self.tv.player)))
+                ActionChains(self.driver).move_to_element(element).perform()
+                WebDriverWait(self.driver, 60).until(EC.visibility_of_element_located((By.XPATH, self.tv.iconVolume)))
+                checkAssert = True
+            except:
+                checkAssert = False
+            
+        return checkAssert
 
     def assertTvPlayEuro(self):
         # time.sleep(60)
@@ -106,6 +136,14 @@ class TvPage:
         time.sleep(1)
         self.wait.until(EC.presence_of_element_located((By.XPATH, self.tv.channelSportstars))).click()
 
+    def tvSearchAny(self, keyword): 
+        inputTV = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.tv.searchTv)))
+        inputTV.send_keys(keyword)
+        time.sleep(1)
+        inputTV.send_keys(Keys.DOWN)
+        time.sleep(1)
+        inputTV.send_keys(Keys.ENTER)
+
 #   search tvn
     def tvSearchTvNmovies(self, keyword): 
         inputTV = self.wait.until(EC.visibility_of_element_located((By.XPATH, self.tv.searchTv)))
@@ -123,6 +161,11 @@ class TvPage:
     def tvCloseVideoPaused(self):
         self.wait.until(EC.presence_of_element_located((By.XPATH, self.tv.closeVideoPause))).click()
         
+    def checkBtnPause(self):
+        try:
+            self.wait.until(EC.presence_of_element_located((By.XPATH, self.tv.btnPlayAfterPause))).click()
+        except:
+            pass
 
     def assertSubscribe(self):
         return self.wait.until(EC.visibility_of_element_located((By.XPATH, self.tv.subscribe)))
@@ -222,3 +265,6 @@ class TvPage:
         inputTV.send_keys(keyword)
         time.sleep(1)
         self.wait.until(EC.presence_of_element_located((By.XPATH, self.tv.channelEuroFive))).click()
+        
+    def refresh(self):
+        self.driver.refresh()

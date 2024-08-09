@@ -16,7 +16,7 @@ def driver(platform):
     yield setup_driver.get_driver()
     setup_driver.driver.quit()
 
-def test_start(driver):
+def test_login(driver):
     login = LoginPage(driver)
     hashPassword = encodeDecodePassword()
     # login.open()
@@ -74,7 +74,6 @@ def test_inputHasBeenRedeemedCodeVoucher(driver):
     voucher.backPage()
     assert voucher.inputUniqVoucher(inputVoucher)
 
-# is being removed 
 def test_checkBuyPackageAfterReedemVoucher(driver):
     voucher = VoucherPage(driver)
     assert voucher.checkBuyPackageActive()

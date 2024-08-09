@@ -1,7 +1,7 @@
 import base64
 
 # Original string
-original_string = "Taibau123@"
+original_string = "4321Lupaa"
 
 # Encode the original string to bytes using UTF-8 encoding
 utf8_bytes = original_string.encode('utf-8')

@@ -9,7 +9,7 @@ class objectBuyPackage:
         self.txtPaymentPremiumSport30Days = "(//div[contains(.,'40.000') and contains(.,'Premium + Sports 30 Days')])[9]"
         self.btnPrice = "//div[@class='priceButton']/span/button"
         self.btnSubscribe = "//md-dialog/md-dialog-actions/button/span"
-        self.choosePayment = "//img[@alt='logo QRIS']"
+        self.choosePayment = "(//p[contains(text(),'Payment')])[2]"
         self.chooseVA = "//span[contains(text(),'Virtual account')]"
         self.iframeChoosePayment = "//iframe[@id='snap-midtrans']"
         self.chooseVABCA = "//a[@href='#/bank-transfer/bca-va']"

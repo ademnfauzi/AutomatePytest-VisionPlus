@@ -60,6 +60,9 @@ class VisitorPage:
     
     def goBuyPackage(self):
         self.driver.find_element(By.XPATH, self.buyPackage.navBuyPackage).click()
+    
+    def goOriginals(self):
+        self.driver.find_element(By.XPATH, self.originals.navOriginals).click()
         
     def goIconProfile(self):
         self.driver.find_element(By.XPATH, self.homepage.iconProfileAvatar).click()
@@ -72,20 +75,28 @@ class VisitorPage:
         time.sleep(1)
         card = WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.XPATH, self.program.cardTransTvCurrent))).click()
     
-        
     def goOpenDetail(self):
-        self.driver.find_element(By.XPATH, self.originals.navOriginals).click()
-        # element = self.driver.find_element(By.XPATH, self.originals.loveStoriesText)
-        # self.driver.execute_script("arguments[0].scrollIntoView();", element)
-        # time.sleep(1)
-        # card = WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.XPATH, self.originals.cardLoveStories)))
-        # ActionChains(self.driver).move_to_element(card).perform()
-        # WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.originals.titleCardLoveStories))).click()
         time.sleep(1)
-        self.driver.execute_script("window.scrollBy(0,800)")
-        card = WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.XPATH, self.originals.cardOriginals)))
-        ActionChains(self.driver).move_to_element(card).perform()
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.originals.titleCardOriginals))).click()
+        self.driver.execute_script("window.scrollBy(0,300)")
+        try:
+            self.driver.execute_script("window.scrollBy(0,300)")
+            card = WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.XPATH, self.originals.cardOriginals)))
+            ActionChains(self.driver).move_to_element(card).perform()
+            WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.originals.titleCardOriginals))).click()            
+        except:
+            try:
+                self.driver.execute_script("window.scrollBy(0,500)")
+                card = WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.XPATH, self.originals.cardOriginals2)))
+                ActionChains(self.driver).move_to_element(card).perform()
+                WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.originals.titleCardOriginals2))).click()
+            except:
+                try:
+                    self.driver.execute_script("window.scrollBy(0,700)")
+                    card = WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.XPATH, self.originals.cardOriginals2)))
+                    ActionChains(self.driver).move_to_element(card).perform()
+                    WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.originals.titleCardOriginals2))).click()
+                except:
+                    print("Cluster Card Originals Not Found")
         
     def clickButtonWatch(self):
         self.wait.until(EC.element_to_be_clickable((By.XPATH, self.originals.btnWatch2))).click()

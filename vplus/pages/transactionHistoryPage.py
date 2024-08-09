@@ -31,6 +31,7 @@ class TransactionHistory:
         return checkAssert
     
     def openPendingTab(self):
+        time.sleep(3)
         WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.transactionHistory.pendingTab))).click()
         try:
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.transactionHistory.statusPending))).click()
@@ -51,6 +52,7 @@ class TransactionHistory:
         return checkAssert
     
     def openFailedTab(self):
+        time.sleep(3)
         WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.transactionHistory.failedTab))).click()
         try:
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.transactionHistory.statusFailed))).click()
@@ -72,6 +74,7 @@ class TransactionHistory:
         return checkAssert
     
     def openSuccessTab(self):
+        time.sleep(3)
         WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.transactionHistory.successTab))).click() 
         try:
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.transactionHistory.statusSuccess))).click()
@@ -95,11 +98,13 @@ class TransactionHistory:
     def backPage(self):
         self.driver.back()
         time.sleep(1)
+        # self.driver.execute_script("window.history.back()")
+
         
     def openButtonMore(self):
         WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.transactionHistory.threePoint))).click()
         try:
-            WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.transactionHistory.btnBuyAgain)))
+            WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.transactionHistory.btnHelpCenter)))
             checkAssert = True
         except:
             checkAssert = False
@@ -123,7 +128,7 @@ class TransactionHistory:
     def clickBuyAgain(self):
         WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.transactionHistory.btnBuyAgain))).click()
         try:
-            WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.transactionHistory.txtOtherPayment)))
+            WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.transactionHistory.txtPayment)))
             checkAssert = True
         except:
             checkAssert = False

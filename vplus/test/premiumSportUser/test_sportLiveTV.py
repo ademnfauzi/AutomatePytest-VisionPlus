@@ -11,7 +11,7 @@ def driver(platform):
     yield setup_driver.get_driver()
     setup_driver.driver.quit()
 
-def test_start(driver):
+def test_login(driver):
     login = LoginPage(driver)
     role = "PremiumSportUser"
     login.loginProcess(driver, role)

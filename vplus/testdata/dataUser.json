@@ -9,14 +9,26 @@
     }],
     "PremiumSportUser": [{
         "username": "8999999999",
-        "password": "NDMyMUx1cGE="
+        "password": "NDMyMUx1cGFh"
     }],
     "FreeUserEmail": [{
-        "username": "baskaratimur5@gmail.com",
+        "username": "qa9105@visionplus.id",
         "password": "NDMyMUx1cGE="
     }],
     "euro": [{
         "username": "testingsulkha9@gmail.com",
+        "password": "NDMyMUx1cGE="
+    }],
+    "emailFreeUser": [{
+        "username": "qa3085@visionplus.id",
+        "password": "NDMyMUx1cGE="
+    }],
+    "FreeUserMalaysia": [{
+        "username": "6082920192",
+        "password": "NDMyMUx1cGE="
+    }],
+    "PremiumUserMalaysia": [{
+        "username": "60182588673",
         "password": "NDMyMUx1cGE="
     }]
 }

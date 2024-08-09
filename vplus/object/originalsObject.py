@@ -1,7 +1,7 @@
 class objectOriginals:
     def __init__(self):
         self.navOriginals = "//span[contains(text(), 'Originals')]"
-        self.sectionComingSoon = "//div[contains(text(), 'Coming Soon')]"
+        self.navbarOriginalsActive = "(//li[@class='md-nav-item selected'])/button/span/span[contains(text(), 'Originals')]"
         self.slideRightCluster = "//*[@id='strip-element-2']/div[2]/div/div[2]/md-icon"
         self.slideLeftCluster = "//*[@id='strip-element-2']/div[2]/div/div[1]/md-icon"
         self.cardCinlock = "//div[@id='scroll-surface-2']/div[1]/node-poster/div/div[3]/span/div[2]"
@@ -13,6 +13,7 @@ class objectOriginals:
         self.btnWatch = "//button[@aria-label='Watch']"
         self.btnWatch2 = "//span[contains(text(), 'Watch')]"
         self.btnConnectDevice = "//md-dialog-actions/button[2]/span"
+        self.btnConnectDevice2 = "//md-dialog-actions/button/span"
         self.timeAds = "//div[@class='videoAdUiAttribution']"
         self.iFrameAds = "//iframe[@title='Advertisement']"
         self.btnSkipAds = "//div[@class='videoAdUiSkipButtonExperimentalText']"
@@ -32,7 +33,7 @@ class objectOriginals:
         self.btnShare = "//extended-info/div/div/div[2]/div[1]/div[1]/div[5]/div/div[2]/content-buttons/div/div[2]/button[5]/div[1]/md-icon"
         self.btnFacebook = "//md-list/md-list-item[1]/div[1]/button/div[1]"
         self.premium30DaysFromPopUpSubscribe = "//div/div[3]/div[1]/div[2]/div[1]"
-        self.btnPricePackage = "//operator-info/div/div/div[2]/div/div/div[3]/span/button"
+        self.btnPricePackage = "//operator-info/div/div/div[2]/div/div/div[3]"
         self.iconSearch = "//md-toolbar/div/button[1]"
         self.inputSearch = "//input[@placeholder='Search']"
         self.cardResultSearch = "//div[2]/div/md-grid-list/md-grid-tile/figure/node-snapshot/div"
@@ -51,3 +52,7 @@ class objectOriginals:
         self.frameAds = "(//iframe[@title='Advertisement'])[1]"
         self.titleCardOriginals = "//*[@id='scroll-surface-2']/div[5]/node-poster/div/div[3]/div/div/div"
         self.cardOriginals = "//*[@id='scroll-surface-2']/div[5]/node-poster/div/div[3]"
+        self.titleCardOriginals2 = "//*[@id='scroll-surface-3']/div[5]/node-poster/div/div[3]/div/div/div"
+        self.cardOriginals2 = "//*[@id='scroll-surface-3']/div[5]/node-poster/div/div[3]"
+        self.titleCardOriginals3 = "//*[@id='scroll-surface-4']/div[5]/node-poster/div/div[3]/div/div/div"
+        self.cardOriginals3 = "//*[@id='scroll-surface-4']/div[5]/node-poster/div/div[3]"

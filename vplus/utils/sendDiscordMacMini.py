@@ -19,7 +19,7 @@ def format_discord_message(df, platform):
     formatted_data = ""
 
     # Extract the module name from the 'id' column
-    df['module'] = df['id'].str.extract(r'(vplus/test/.+?/)')
+    df['module'] = df['id'].str.extract(r'(test/.+?/)')
 
     # Group the DataFrame by the 'module' column
     grouped_df = df.groupby('module')
@@ -31,50 +31,45 @@ def format_discord_message(df, platform):
         failed_count = group_df['status'].eq('failed').sum()
         error_count = group_df['status'].eq('error').sum()
 
-        # Get failed and error test cases
-        failed_tests = group_df.loc[group_df['status'] == 'failed', ['id', 'message']]
-        error_tests = group_df.loc[group_df['status'] == 'error', ['id', 'message']]
+        # Get unique modules for failed, error, and passed tests
+        failed_modules = group_df.loc[group_df['status'] == 'failed', 'id'].unique()
+        error_modules = group_df.loc[group_df['status'] == 'error', 'id'].unique()
+        passed_modules = group_df.loc[group_df['status'] == 'passed', 'id'].unique()
 
         # Generate the summary message for the module
-        formatted_data += f"\n**===================== {platform.upper()} =====================**\n"
-        formatted_data += f"Test Case Summary: ` {module} `\n"  # Bold borders for the test suite
+        formatted_data += f"\n========== {platform.upper()} ==========\n"
+        formatted_data += f"**Test Case Summary: {module}**\n"
         formatted_data += f"Total: {total_tests},\n"
         formatted_data += f"Passed: {passed_count},\n"
         formatted_data += f"Failed: {failed_count},\n"
         formatted_data += f"Error: {error_count}\n"
 
         if failed_count > 0:
-            formatted_data += "\nList of Failed Test Cases:\n"
-            for index, row in failed_tests.iterrows():
-                if "assert False" in row['message']:
-                    truncated_message = "assert False"
-                else:
-                    truncated_message = (row['message'][:45] + '...') if len(row['message']) > 45 else row['message']
-                formatted_data += f"- [FAILED] {row['id']}\n"
-                formatted_data += f"_message: {truncated_message}_\n"  # Italic for messages
+            formatted_data += "\n**List of Failed Test Cases: **\n"
+            for failed_module in failed_modules:
+                formatted_data += f"- [FAILED] {failed_module}\n"
 
         if error_count > 0:
-            formatted_data += "\nList of Error Test Cases:\n"
-            for index, row in error_tests.iterrows():
-                if "assert False" in row['message']:
-                    truncated_message = "assert False"
-                else:
-                    truncated_message = (row['message'][:45] + '...') if len(row['message']) > 45 else row['message']
-                formatted_data += f"- [ERROR] {row['id']}\n"
-                formatted_data += f"_message: {truncated_message}_\n"  # Italic for messages
+            formatted_data += "\n**List of Error Test Cases: **\n"
+            for error_module in error_modules:
+                formatted_data += f"- [ERROR] {error_module}\n"
+
+        if passed_count > 0:
+            formatted_data += "\n**List of Passed Test Cases: **\n"
+            for passed_module in passed_modules:
+                formatted_data += f"- [PASSED] {passed_module}\n"
                 
         if error_count > 0 or failed_count > 0:
-            formatted_data += "CC : <@402021347296804875> <@1077483182942863470> <@1020169083003600976> <@1072363842761408663>"        
+            formatted_data += "CC : <@402021347296804875> <@1020169083003600976>"
+            formatted_data += "\n"
+        
         formatted_data += "\n"
 
     return formatted_data
 
 
 # File path to your CSV file
-# Mac Mini
-csv_file_path = '/Users/visionplus/Automation/AutomationWebSelenium/vplus/report/report.csv'  # Change this to the actual path
-# My Local
-# csv_file_path = '/Users/ade/Documents/Automation/AutomationWebSelenium/vplus/report/report.csv'  # Change this to the actual path
+csv_file_path = '/Users/visionplus/Automation/automation-web-selenium/vplus/report/report.csv'  # Change this to the actual path
 
 # Read data from CSV file
 df = read_csv(csv_file_path)
@@ -92,10 +87,7 @@ formatted_data = format_discord_message(df, platform)
 webhook_url = 'https://discord.com/api/webhooks/1164098964287660102/paNJevQJjaCy9oC-aY9Xy28L8L8WJgXFNa4tYr0eoJ7_nI3Qj4UwAdUBsk5PKD4icKXH'  # Replace with your actual webhook URL
 
 # Folder path for the report
-# Mac Mini
-report_folder = '/Users/visionplus/Automation/AutomationWebSelenium/vplus/report/'
-# My Local
-# report_folder = '/Users/ade/Documents/Automation/AutomationWebSelenium/vplus/report/'
+report_folder = '/Users/visionplus/Automation/automation-web-selenium/vplus/report'
 
 # Zip the report folder
 shutil.make_archive(os.path.join(report_folder, 'report'), 'zip', report_folder)

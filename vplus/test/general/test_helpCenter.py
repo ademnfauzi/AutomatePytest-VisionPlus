@@ -10,10 +10,10 @@ def driver(platform):
     yield setup_driver.get_driver()
     setup_driver.driver.quit()
     
-def test_start(driver):
+def test_login(driver):
     login = LoginPage(driver)
     buyPackage = BuyPackage(driver)
-    role = "PremiumUser"
+    role = "FreeUser"
     login.loginProcess(driver, role)
     assert buyPackage.goBuyPackage()
 

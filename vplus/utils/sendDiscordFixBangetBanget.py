@@ -69,7 +69,6 @@ def format_discord_message(df, platform):
 
     return formatted_data
 
-
 # File path to your CSV file
 # Mac Mini
 # csv_file_path = '/Users/visionplus/Automation/AutomationWebSelenium/vplus/report/report.csv'  # Change this to the actual path

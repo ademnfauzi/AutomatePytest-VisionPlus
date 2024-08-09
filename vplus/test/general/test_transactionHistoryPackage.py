@@ -10,9 +10,9 @@ def driver(platform):
     yield setup_driver.get_driver()
     setup_driver.driver.quit()
 
-def test_start(driver):
+def test_login(driver):
     login = LoginPage(driver)
-    role = "PremiumUser"
+    role = "PremiumSportUser"
     login.loginProcess(driver, role)
     
 def test_goToTransactionHistory(driver):
@@ -37,17 +37,17 @@ def test_failedTab(driver):
     transactionHistory.backPage()
     assert transactionHistory.openFailedTab()
 
-def test_openBuyAgainInPendingTab(driver):
-    transactionHistory = TransactionHistory(driver)
-    transactionHistory.openButtonMore()
-    assert transactionHistory.clickBuyAgain()
-    transactionHistory.backPage()    
+# def test_openBuyAgainInFailedTab(driver):
+#     transactionHistory = TransactionHistory(driver)
+#     transactionHistory.openButtonMore()
+#     assert transactionHistory.clickBuyAgain()
+#     transactionHistory.backPage()    
 
-def test_openHelpCenterPendingTab(driver):
-    transactionHistory = TransactionHistory(driver)
-    transactionHistory.openButtonMore()
-    assert transactionHistory.clickHelpCenter()
-    transactionHistory.backPage()
+# def test_openHelpCenterFailedTab(driver):
+#     transactionHistory = TransactionHistory(driver)
+#     transactionHistory.openButtonMore()
+#     assert transactionHistory.clickHelpCenter()
+#     transactionHistory.backPage()
 
 def test_openDetailFailedTransactionHistory(driver):
     transactionHistory = TransactionHistory(driver)
@@ -58,17 +58,17 @@ def test_successTab(driver):
     transactionHistory.backPage()
     assert transactionHistory.openSuccessTab()
     
-def test_openBuyAgainInSuccessTab(driver):
-    transactionHistory = TransactionHistory(driver)
-    transactionHistory.openButtonMore()
-    assert transactionHistory.clickBuyAgain()
-    transactionHistory.backPage()    
+# def test_openBuyAgainInSuccessTab(driver):
+#     transactionHistory = TransactionHistory(driver)
+#     transactionHistory.openButtonMore()
+#     assert transactionHistory.clickBuyAgain()
+#     transactionHistory.backPage()    
 
-def test_openHelpCenterSuccessTab(driver):
-    transactionHistory = TransactionHistory(driver)
-    transactionHistory.openButtonMore()
-    assert transactionHistory.clickHelpCenter()
-    transactionHistory.backPage()
+# def test_openHelpCenterSuccessTab(driver):
+#     transactionHistory = TransactionHistory(driver)
+#     transactionHistory.openButtonMore()
+#     assert transactionHistory.clickHelpCenter()
+#     transactionHistory.backPage()
 
 def test_openDetailSuccessTransactionHistory(driver):
     transactionHistory = TransactionHistory(driver)

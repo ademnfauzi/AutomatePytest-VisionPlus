@@ -69,15 +69,12 @@ def test_successLoginPhoneNumber(driver):
     # login.open()
     with open('vplus/testdata/dataUser.json') as json_file:
         data = json.load(json_file)
-            
     username = data['FreeUser'][0]["username"]
     password = data['FreeUser'][0]["password"]
-
     stringDecode = hashPassword.decode(password)
-    
     login.clickLogin(username, stringDecode)
     assert login.assertSuccessLogin()
-   # login.closeBrowser()
+#    login.closeBrowser()
 
 def test_successLoginWithEmail(driver):
     login = LoginPage(driver)
@@ -86,8 +83,8 @@ def test_successLoginWithEmail(driver):
 
 def test_loginToLogout(driver):
     login = LoginPage(driver)
-    role = "FreeUser"
-    login.loginProcess(driver, role)
+    role = "emailFreeUser"
+    login.loginProcessWithEmail(driver, role)
     login.logout()
     assert login.assertLogout()
 

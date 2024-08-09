@@ -27,14 +27,15 @@ def test_goTokopedia(driver):
     voucher = VoucherPage(driver)
     assert voucher.goTokopedia()
 
-def test_goBlibi(driver):
-    login = LoginPage(driver)
-    role = "FreeUser"
-    login.loginProcess(driver, role)
-    voucher = VoucherPage(driver)
-    assert voucher.goVoucher()
-    voucher = VoucherPage(driver)
-    assert voucher.goBlibi()
+# Get blocked website from blibli
+# def test_goBlibi(driver):
+#     login = LoginPage(driver)
+#     role = "FreeUser"
+#     login.loginProcess(driver, role)
+#     voucher = VoucherPage(driver)
+#     assert voucher.goVoucher()
+#     voucher = VoucherPage(driver)
+#     assert voucher.goBlibi()
     
 def test_goLazada(driver):
     login = LoginPage(driver)

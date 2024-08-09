@@ -21,13 +21,13 @@ class ForgotPage:
 
     def goToLoginPage(self):
         self.wait.until(EC.element_to_be_clickable((By.XPATH, self.forgot.buttonLogin))).click()
-        mainWindow = self.driver.current_window_handle  
-        for handle in self.driver.window_handles:  
-            if handle != mainWindow:
-                self.driver.switch_to.window(handle)
-                break
-        # mainWindow = self.driver.window_handles[1]  
-        # self.driver.switch_to.window(mainWindow)
+        # mainWindow = self.driver.current_window_handle  
+        # for handle in self.driver.window_handles:  
+        #     if handle != mainWindow:
+        #         self.driver.switch_to.window(handle)
+        #         break
+        mainWindow = self.driver.window_handles[1]  
+        self.driver.switch_to.window(mainWindow)
 
     def clickForgotPassword(self):
         time.sleep(3)
@@ -38,7 +38,17 @@ class ForgotPage:
     def inputForm(self, username, password):
         print(username)
         print(password)
+        time.sleep(3)
         self.wait.until(EC.visibility_of_element_located((By.XPATH, self.forgot.inputPhone))).send_keys(username)
+        self.wait.until(EC.visibility_of_element_located((By.XPATH, self.forgot.inputPassword))).send_keys(password)
+        time.sleep(1)
+        
+    def inputFormEmail(self, username, password):
+        print(username)
+        print(password)
+        self.wait.until(EC.visibility_of_element_located((By.XPATH, self.forgot.halamanEmail))).click()  
+        time.sleep(1)
+        self.wait.until(EC.visibility_of_element_located((By.XPATH, self.forgot.inputEmail))).send_keys(username)
         self.wait.until(EC.visibility_of_element_located((By.XPATH, self.forgot.inputPassword))).send_keys(password)
         time.sleep(1)
 

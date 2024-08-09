@@ -8,3 +8,5 @@ class ObjectForgotPassword:
         self.sendOTP = "//button[@id= 'button-send']"
         self.buttonLogin = "//span[contains(text(), 'Log in/Register')]"
         self.iconHide = "//div[@class='relative']//button"
+        self.halamanEmail = "//p[contains(text(), 'Email')]"
+        self.inputEmail = "//input[@id='fld_Email']"

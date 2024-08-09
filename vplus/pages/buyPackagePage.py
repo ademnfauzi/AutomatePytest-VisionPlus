@@ -76,11 +76,12 @@ class BuyPackage:
         
         if (payment == 'Payment'):
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.choosePayment))).click()
+            print("Success Click Payment")
             result = self.RunPayment(typePayment)
             return result
         elif (payment == 'Telco Balance'):
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseTelcoBalance))).click()
-            
+            print("Success Click Telco Balance")
             try:
                 WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.txtProvide)))
                 result = True
@@ -90,19 +91,27 @@ class BuyPackage:
             return result            
         elif (payment == 'Other Payment'):
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseOtherPayment))).click()
+            print("Success Other Payment")
             result = self.runOtherPayment(typePayment, role)
             return result
             
     def RunPayment(self, typePayment):
-        iframe = self.driver.find_element(By.XPATH, self.buyPackage.iframeChoosePayment)
-        self.driver.switch_to.frame(iframe)
-        
-        print("Masuk Iframe")
+        try:
+            iframe = self.driver.find_element(By.XPATH, self.buyPackage.iframeChoosePayment)
+            print('Iframe Ready')
+            self.driver.switch_to.frame(iframe)
+            print("Switch IFrame")
+        except:
+            print("Iframe Not Ready")
+        finally:
+            time.sleep(1)
+        # print(5)
         if (typePayment == 'BCA'):
             # time.sleep(1)
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseVA))).click()
             time.sleep(1)
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseVABCA))).click()
+            print("BCA VA Ready")
             try:
                 # time.sleep(1)
                 WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.txtVA)))
@@ -115,6 +124,7 @@ class BuyPackage:
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseVA))).click()
             time.sleep(1)
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseVABRI))).click()
+            print("BRI VA Ready")
             try:
                 # time.sleep(1)
                 WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.txtVA)))
@@ -127,6 +137,7 @@ class BuyPackage:
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseVA))).click()
             time.sleep(1)
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseVABNI))).click()
+            print("BNI VA Ready")
             try:
                 # time.sleep(1)
                 WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.txtVA)))
@@ -139,6 +150,7 @@ class BuyPackage:
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseVA))).click()
             time.sleep(1)
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseVAMandiri))).click()
+            print("Mandiri VA Ready")
             try:
                 # time.sleep(1)
                 WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.txtVA)))
@@ -151,6 +163,7 @@ class BuyPackage:
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseVA))).click()
             time.sleep(1)
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseVAPermata))).click()
+            print("Permata VA Ready")
             try:
                 # time.sleep(1)
                 WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.txtVA)))
@@ -163,6 +176,7 @@ class BuyPackage:
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseVA))).click()
             time.sleep(1)
             WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.chooseVAOther))).click()
+            print("Other Bank VA Ready")
             try:
                 # time.sleep(1)
                 WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, self.buyPackage.txtVA)))

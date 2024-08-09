@@ -14,5 +14,5 @@ class objectRegister:
         self.discoverProfile = "//span[contains(text(), 'Discover profiles')]"
         self.accountRegistered = "//h3[contains(text(), 'This account has been registered')]"
         self.halamanEmail = "//p[contains(text(), 'Email')]"
-        self.formattEmail = "//p[contains(text(), 'Invalid email')]"
+        self.formattEmail = "//p[contains(text(), 'Email address format incorrect')]"
         self.txtViaSMS = "(//button[contains(text(),' Send via SMS ')])[1]"

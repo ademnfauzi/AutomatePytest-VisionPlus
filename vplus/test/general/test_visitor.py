@@ -58,6 +58,7 @@ def test_clickIconProfile(driver):
 def test_clickButtonWatchVod(driver):
     visitor = VisitorPage(driver)
     visitor.backToMainTab()
+    visitor.goOriginals()
     visitor.goOpenDetail()
     visitor.clickButtonWatch()
     assert visitor.assertLoginPage()

@@ -22,7 +22,7 @@ class AddProfilePage:
         self.wait.until(EC.element_to_be_clickable((By.XPATH, self.addProfile.clickSettings))).click()
 
     def clickConfigure(self):
-        time.sleep(1)
+        time.sleep(2)
         self.wait.until(EC.element_to_be_clickable((By.XPATH, self.addProfile.clickConfigureAddProfile))).click()
 
     def clickAddProfile(self):

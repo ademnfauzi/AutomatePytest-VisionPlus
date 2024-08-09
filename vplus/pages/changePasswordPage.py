@@ -59,9 +59,11 @@ class ChangesPage:
         self.wait.until(EC.element_to_be_clickable((By.XPATH, self.changes.next))).click()
 
     def assertSuccessChangePW(self):
+        time.sleep(2)
         return self.wait.until(EC.visibility_of_element_located((By.XPATH, self.changes.assertSuccessChange)))
   
     def assertPasswordSame(self):
+        time.sleep(2)
         return self.wait.until(EC.visibility_of_element_located((By.XPATH, self.changes.assertPasswordSame)))
  
     def assertPasswordInvalid(self):

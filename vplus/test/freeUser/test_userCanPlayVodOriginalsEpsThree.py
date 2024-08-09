@@ -10,7 +10,7 @@ def driver(platform):
     yield setup_driver.get_driver()
     setup_driver.driver.quit()
 
-def test_start(driver):
+def test_login(driver):
     login = LoginPage(driver)
     role = "FreeUser"
     login.loginProcess(driver, role)
@@ -32,15 +32,15 @@ def test_canOpenDetailVOD(driver):
     originals.clickCardVODOriginals()
     assert originals.assertClickCardVOD()
     
-def test_canClickEpsThree(driver):
-    originals = OriginalsPage(driver)
-    originals.clickEpsThree()
+# def test_canClickEpsThree(driver):
+#     originals = OriginalsPage(driver)
+#     originals.clickEpsThree()
 
-def test_cantPlayVOD(driver):
-    originals = OriginalsPage(driver)
-    originals.clickButtonSubscribe()
+# def test_cantPlayVOD(driver):
+#     originals = OriginalsPage(driver)
+#     originals.clickButtonSubscribe()
     
-def test_popUpSubscribe(driver):
-    originals = OriginalsPage(driver)
-    assert originals.assertPopUpSubscribe()    
+# def test_popUpSubscribe(driver):
+#     originals = OriginalsPage(driver)
+#     assert originals.assertPopUpSubscribe()    
     

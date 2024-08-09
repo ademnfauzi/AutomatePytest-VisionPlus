@@ -8,6 +8,6 @@ class ObjectChangePassword:
         self.next = "//div[contains(text(), 'Next')]"
         self.assertSuccessChange = "//label[text() ='Password Succesfully Changed']"
         self.assertInvalidPassword = "//p[text() = 'Invalid password']"
-        self.assertPasswordSame = "//p[text() = 'New password must be different from the current password']"
+        self.assertPasswordSame = "//p[text() = 'New password must be different from the current password.']"
         self.buttonOkInvalid = "//button[text() = ' OK ']"
         self.configureDevice = "(//span[@translate=''] [text()='Configure'])[5]"

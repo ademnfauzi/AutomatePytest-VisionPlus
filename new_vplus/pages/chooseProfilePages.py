@@ -28,7 +28,7 @@ class ChooseProfileProfile:
         WebDriverWait(self.driver, 15).until(EC.presence_of_element_located((By.XPATH, profile.imgChooseProfile))).click()
         # time.sleep(1)
         
-    def chooseProfileAfterLogin2(self):
+    def chooseProfileAfterLogin(self):
         mainWindow = self.driver.window_handles[0]
         self.driver.switch_to.window(mainWindow)
         wait = WebDriverWait(self.driver, 10)

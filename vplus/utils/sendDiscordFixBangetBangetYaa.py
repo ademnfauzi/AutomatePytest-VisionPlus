@@ -31,9 +31,10 @@ def format_discord_message(df, platform):
         failed_count = group_df['status'].eq('failed').sum()
         error_count = group_df['status'].eq('error').sum()
 
-        # Get unique modules for failed and error tests
+        # Get unique modules for failed, error, and passed tests
         failed_modules = group_df.loc[group_df['status'] == 'failed', 'id'].unique()
         error_modules = group_df.loc[group_df['status'] == 'error', 'id'].unique()
+        passed_modules = group_df.loc[group_df['status'] == 'passed', 'id'].unique()
 
         # Generate the summary message for the module
         formatted_data += f"\n========== {platform.upper()} ==========\n"
@@ -52,6 +53,11 @@ def format_discord_message(df, platform):
             formatted_data += "\n**List of Error Test Cases: **\n"
             for error_module in error_modules:
                 formatted_data += f"- [ERROR] {error_module}\n"
+
+        if passed_count > 0:
+            formatted_data += "\n**List of Passed Test Cases: **\n"
+            for passed_module in passed_modules:
+                formatted_data += f"- [PASSED] {passed_module}\n"
                 
         if error_count > 0 or failed_count > 0:
             formatted_data += "CC : <@402021347296804875>"
@@ -63,7 +69,7 @@ def format_discord_message(df, platform):
 
 
 # File path to your CSV file
-csv_file_path = '/Users/ade/Documents/Automation/AutomationWebSelenium/vplus/report/report.csv'  # Change this to the actual path
+csv_file_path = '/Users/ade/Documents/Automation/automation-web-selenium/vplus/report/report.csv'  # Change this to the actual path
 
 # Read data from CSV file
 df = read_csv(csv_file_path)
@@ -76,12 +82,12 @@ formatted_data = format_discord_message(df, platform)
 
 # Discord webhook setup
 # Discord Private
-# webhook_url = 'https://discord.com/api/webhooks/1211947885659430912/2MJhfYavdeWCJKeQQhGL48C31IswE_SI6uIkWqy74wohed_7w408h0E1sAPyrHuYeZd9'  # Replace with your actual webhook URL
+webhook_url = 'https://discord.com/api/webhooks/1211947885659430912/2MJhfYavdeWCJKeQQhGL48C31IswE_SI6uIkWqy74wohed_7w408h0E1sAPyrHuYeZd9'  # Replace with your actual webhook URL
 # Mac Mini 
-webhook_url = 'https://discord.com/api/webhooks/1164098964287660102/paNJevQJjaCy9oC-aY9Xy28L8L8WJgXFNa4tYr0eoJ7_nI3Qj4UwAdUBsk5PKD4icKXH'  # Replace with your actual webhook URL
+# webhook_url = 'https://discord.com/api/webhooks/1164098964287660102/paNJevQJjaCy9oC-aY9Xy28L8L8WJgXFNa4tYr0eoJ7_nI3Qj4UwAdUBsk5PKD4icKXH'  # Replace with your actual webhook URL
 
 # Folder path for the report
-report_folder = '/Users/ade/Documents/Automation/AutomationWebSelenium/vplus/report/'
+report_folder = '/Users/ade/Documents/Automation/automation-web-selenium/vplus/report/'
 
 # Zip the report folder
 shutil.make_archive(os.path.join(report_folder, 'report'), 'zip', report_folder)

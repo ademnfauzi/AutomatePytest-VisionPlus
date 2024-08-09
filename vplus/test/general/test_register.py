@@ -1,3 +1,4 @@
+from vplus.pages.loginPage import LoginPage
 from vplus.utils.setup import SetupDriver
 from vplus.pages.regisPage import registerPage
 from vplus.testdata.hash import encodeDecodePassword
@@ -73,7 +74,8 @@ def test_registerSuccess(driver):
     register.inputFormRegis_clickRegis(username, stringDecode)
     users.setUsername(username)
     assert register.assertDiscoverProfile()
-    
+    # login = LoginPage(driver)
+    # login.skipCreateAvatar()
 
 def test_registerEmailSuccess(driver):
     register = registerPage(driver)

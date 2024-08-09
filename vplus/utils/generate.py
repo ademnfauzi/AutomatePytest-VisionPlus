@@ -34,8 +34,8 @@ class Generate:
     def endpointLoginCMS(self,url):
         url = url + '/cms-service/v1/login'
         data ={
-            "email": "baskara@gmail.com",
-            "password": "4321lupa"
+            "email": "tech@visionplus.id",
+            "password": "4321Lupa"
         }
         response = requests.post(url, json=data)
         datajson = response.json()

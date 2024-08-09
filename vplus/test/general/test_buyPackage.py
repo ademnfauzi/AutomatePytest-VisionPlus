@@ -143,39 +143,40 @@ def test_buyPackagePremiumSportDebitOrCredit(driver):
 #     typePayment = ''
 #     assert buyPackage.choosePayment(package,payment,typePayment,role)
 
-def test_buyPackagePremiumSportOvo(driver):
-    login = LoginPage(driver)
-    role = "FreeUser"
-    login.loginProcess(driver, role)
-    buyPackage = BuyPackage(driver)
-    assert buyPackage.goBuyPackage()
-    buyPackage = BuyPackage(driver)
-    package = 'Premium Sport'
-    payment = 'Other Payment'
-    typePayment = 'Other Bank'
-    assert buyPackage.choosePayment(package,payment,typePayment,role)
+# is hidden
+# def test_buyPackagePremiumSportOvo(driver):
+#     login = LoginPage(driver)
+#     role = "FreeUser"
+#     login.loginProcess(driver, role)
+#     buyPackage = BuyPackage(driver)
+#     assert buyPackage.goBuyPackage()
+#     buyPackage = BuyPackage(driver)
+#     package = 'Premium Sport'
+#     payment = 'Other Payment'
+#     typePayment = 'Other Bank'
+#     assert buyPackage.choosePayment(package,payment,typePayment,role)
 
-def test_buyPackagePremiumSportDana(driver):
-    login = LoginPage(driver)
-    role = "FreeUser"
-    login.loginProcess(driver, role)
-    buyPackage = BuyPackage(driver)
-    assert buyPackage.goBuyPackage()
-    buyPackage = BuyPackage(driver)
-    package = 'Premium'
-    payment = 'Other Payment'
-    typePayment = 'Other Bank'
-    assert buyPackage.choosePayment(package,payment,typePayment,role)
+# def test_buyPackagePremiumSportDana(driver):
+#     login = LoginPage(driver)
+#     role = "FreeUser"
+#     login.loginProcess(driver, role)
+#     buyPackage = BuyPackage(driver)
+#     assert buyPackage.goBuyPackage()
+#     buyPackage = BuyPackage(driver)
+#     package = 'Premium'
+#     payment = 'Other Payment'
+#     typePayment = 'Other Bank'
+#     assert buyPackage.choosePayment(package,payment,typePayment,role)
     
-def test_buyPackagePremiumSportLinkAja(driver):
-    login = LoginPage(driver)
-    role = "FreeUser"
-    login.loginProcess(driver, role)
-    buyPackage = BuyPackage(driver)
-    assert buyPackage.goBuyPackage()
-    buyPackage = BuyPackage(driver)
-    package = 'Premium Sport'
-    payment = 'Other Payment'
-    typePayment = 'Other Bank'
-    assert buyPackage.choosePayment(package,payment,typePayment,role)
+# def test_buyPackagePremiumSportLinkAja(driver):
+#     login = LoginPage(driver)
+#     role = "FreeUser"
+#     login.loginProcess(driver, role)
+#     buyPackage = BuyPackage(driver)
+#     assert buyPackage.goBuyPackage()
+#     buyPackage = BuyPackage(driver)
+#     package = 'Premium Sport'
+#     payment = 'Other Payment'
+#     typePayment = 'Other Bank'
+#     assert buyPackage.choosePayment(package,payment,typePayment,role)
 

@@ -27,11 +27,12 @@ class OriginalsPage:
         self.driver.find_element(By.XPATH, self.originals.navOriginals).click()
         
     def assertGoOriginals(self):
-        time.sleep(3)
-        element = self.driver.find_element(By.XPATH, self.originals.sectionComingSoon)
-        element.click()
-        return element
-
+        try:
+            element = self.driver.find_element(By.XPATH, self.originals.navbarOriginalsActive)
+            return True if element else False
+        except Exception as e:
+            return False
+        
     def clickCluster(self):
         self.driver.find_element(By.XPATH, self.originals.slideRightCluster).click()
         time.sleep(1)
@@ -68,19 +69,32 @@ class OriginalsPage:
         
     
     def clickCardVODOriginals(self):
-        # time.sleep(1)
-        # # self.wait.until(EC.element_to_be_clickable((By.XPATH, self.originals.slideBannerRight))).click()
-        # self.driver.find_element(By.XPATH, self.originals.slideBannerLeft).click()
-        # time.sleep(1)
-        # # self.driver.find_element(By.XPATH, self.originals.slideBannerRight).click()
-        # # time.sleep(1)
-        # self.driver.find_element(By.XPATH, self.originals.clickBanner).click()
-        # # self.driver.find_element(By.XPATH, self.originals.cardCinlock).click()
         time.sleep(1)
-        self.driver.execute_script("window.scrollBy(0,800)")
-        card = WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.XPATH, self.originals.cardOriginals)))
-        ActionChains(self.driver).move_to_element(card).perform()
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.originals.titleCardOriginals))).click()
+        self.driver.execute_script("window.scrollBy(0,300)")
+        try:
+            self.driver.execute_script("window.scrollBy(0,300)")
+            card = WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.XPATH, self.originals.cardOriginals)))
+            ActionChains(self.driver).move_to_element(card).perform()
+            WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.originals.titleCardOriginals))).click()            
+        except:
+            try:
+                self.driver.execute_script("window.scrollBy(0,500)")
+                card = WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.XPATH, self.originals.cardOriginals2)))
+                ActionChains(self.driver).move_to_element(card).perform()
+                WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.originals.titleCardOriginals2))).click()
+            except:
+                try:
+                    self.driver.execute_script("window.scrollBy(0,700)")
+                    card = WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.XPATH, self.originals.cardOriginals2)))
+                    ActionChains(self.driver).move_to_element(card).perform()
+                    WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.originals.titleCardOriginals2))).click()
+                except:
+                    print("Cluster Card Originals Not Found")
+            
+        # self.driver.execute_script("window.scrollBy(0,300)")
+        # card = WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.XPATH, self.originals.cardOriginals)))
+        # ActionChains(self.driver).move_to_element(card).perform()
+        # WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, self.originals.titleCardOriginals))).click()
         
     def assertClickCardVOD(self):
         try:
@@ -172,8 +186,10 @@ class OriginalsPage:
         wait = WebDriverWait(self.driver,100)
         try:
             element = wait.until(EC.presence_of_element_located((By.XPATH, self.originals.player)))
+            print("Player detected")
             ActionChains(self.driver).move_to_element(element).perform()
             wait.until(EC.element_to_be_clickable((By.XPATH, self.originals.btnPause)))
+            print("Pause detected")
             # print('element ditemukan')
             playVOD = True
         except:
@@ -189,8 +205,10 @@ class OriginalsPage:
         time.sleep(2)        
         try:
             element = wait.until(EC.element_to_be_clickable((By.XPATH, self.originals.player)))
+            print('player detected')
             ActionChains(self.driver).move_to_element(element).perform()
             wait.until(EC.element_to_be_clickable((By.XPATH, originals.btnPauseVideo))).click()
+            print('Success pause')
             checkAssert = True
         except:
             checkAssert = False

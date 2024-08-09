@@ -31,7 +31,8 @@ class registerPage:
         #         self.driver.switch_to.window(handle)
         #         break
         self.driver.switch_to.window(self.driver.window_handles[1])
-        self.driver.find_element(By.XPATH, self.register.clickRegister).click()
+        # self.driver.find_element(By.XPATH, self.register.clickRegister).click()
+        self.wait.until(EC.presence_of_element_located((By.XPATH, self.register.clickRegister))).click()
 
     def inputFormRegis_clickRegis(self, username, password):   
         time.sleep(1)
@@ -155,10 +156,11 @@ class registerPage:
     
     # assert message invalidOTP
     def assertOTPSalah(self):
+        time.sleep(2)
         return self.driver.find_element(By.XPATH, self.register.messageInvalidOTP)
     
     def assertDiscoverProfile(self):
-        time.sleep(3)
+        time.sleep(5)
         login = objectLogin()
         mainWindow = self.driver.window_handles[0]  
         self.driver.switch_to.window(mainWindow)
@@ -166,6 +168,7 @@ class registerPage:
             WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, login.skip)))
             checkAssert = True
         except:
+            print("Doesnt appear button skip")
             checkAssert = False
         
         return checkAssert
@@ -194,8 +197,20 @@ class registerPage:
     def assertAccountRegistered(self):
         return self.wait.until(EC.presence_of_element_located((By.XPATH, self.register.accountRegistered)))
 
-
-        
+    def inputFormRegis_clickRegisWithEmailCheckOTP(self, username, password):   
+        time.sleep(1)
+        self.wait.until(EC.element_to_be_clickable((By.XPATH, self.register.halamanEmail))).click()
+        time.sleep(2)
+        self.driver.find_element(By.XPATH, self.register.inputEmail).send_keys(username)
+        self.driver.find_element(By.XPATH, self.register.inputPassword).send_keys(password)
+        time.sleep(2)
+        self.wait.until(EC.element_to_be_clickable((By.XPATH, self.register.clickSendOtp))).click()
+        time.sleep(1)
+        try:
+            self.wait.until(EC.element_to_be_clickable((By.XPATH, self.register.txtViaSMS))).click()
+            print("Appear pop up otp via whatsapp")
+        except:
+            print("Disappear pop up otp via whatsapp")        
 
 
 

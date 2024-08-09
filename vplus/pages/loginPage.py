@@ -26,12 +26,13 @@ class LoginPage:
     # ke halaman page login
     def goToLogin(self):
         self.wait.until(EC.presence_of_element_located((By.XPATH, self.login.buttonLoginRegis))).click()
-        mainWindow = self.driver.current_window_handle  
-        for handle in self.driver.window_handles:  
-            if handle != mainWindow:
-                self.driver.switch_to.window(handle)
-                break
-
+        # mainWindow = self.driver.current_window_handle  
+        # for handle in self.driver.window_handles:  
+        #     if handle != mainWindow:
+        #         self.driver.switch_to.window(handle)
+        #         break
+        mainWindow = self.driver.window_handles[1]  
+        self.driver.switch_to.window(mainWindow)
       
 
     def inputFormLoginHP(self, username, password):
@@ -57,17 +58,69 @@ class LoginPage:
         print(username)
         print(password)
         self.driver.find_element(By.XPATH, self.login.buttonLoginRegis).click()
-        mainWindow = self.driver.current_window_handle  
-        for handle in self.driver.window_handles:  
-            if handle != mainWindow:
-                self.driver.switch_to.window(handle)
-                break
+        # mainWindow = self.driver.current_window_handle  
+        # for handle in self.driver.window_handles:  
+        #     if handle != mainWindow:
+        #         self.driver.switch_to.window(handle)
+        #         break
+        mainWindow = self.driver.window_handles[1]  
+        self.driver.switch_to.window(mainWindow)
+        
         time.sleep(5)
+        # self.wait.until(EC.presence_of_element_located((By.XPATH, self.login.form_inputPhone))).send_keys(username)
+        # self.wait.until(EC.presence_of_element_located((By.XPATH, self.login.form_inputPassword))).send_keys(password)
+        # self.wait.until(EC.presence_of_element_located((By.XPATH, self.login.buttonLogin))).click()
         self.driver.find_element(By.XPATH, self.login.form_inputPhone).send_keys(username)
         self.driver.find_element(By.XPATH, self.login.form_inputPassword).send_keys(password)
         time.sleep(2)
         self.driver.find_element(By.XPATH, self.login.form_buttonLogin).click()
         # wait ganti element
+        time.sleep(5)
+        
+    def clickLoginOther(self, username, password, prefix):
+        print(username)
+        print(password)
+        self.driver.find_element(By.XPATH, self.login.buttonLoginRegis).click()
+        mainWindow = self.driver.window_handles[1]  
+        self.driver.switch_to.window(mainWindow)        
+        time.sleep(5)
+
+        prefix_element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.login.choosePrefixPhone))
+        )
+        prefix_element.click()
+
+        # Sleep for 1 second to ensure the dropdown is displayed
+        time.sleep(1)
+        
+        # Wait for the input prefix element to be visible and clickable
+        input_prefix_element = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.login.choosePrefixPhoneMalaysia))
+        )
+        input_prefix_element.click()
+        # input_prefix_element = WebDriverWait(self.driver, 10).until(
+        #     EC.element_to_be_clickable((By.XPATH, self.login.inputPrefix))
+        # )
+        # input_prefix_element.send_keys(prefix)
+
+        # list_prefix_element = WebDriverWait(self.driver, 10).until(
+        #     EC.element_to_be_clickable((By.XPATH, self.login.clickListPrefix))
+        # )
+        # list_prefix_element.click()
+        
+        time.sleep(1)
+        
+        self.driver.find_element(By.XPATH, self.login.form_inputPhone).send_keys(username)
+        self.driver.find_element(By.XPATH, self.login.form_inputPassword).send_keys(password)
+        
+        # Sleep for 2 seconds to ensure all inputs are filled
+        time.sleep(2)
+        
+        # Wait for the login button to be clickable
+        login_button = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, self.login.form_buttonLogin))
+        )
+        login_button.click()
         time.sleep(5)
        
        
@@ -150,6 +203,33 @@ class LoginPage:
             print(f"Role '{role}' not found in the dataUser.json file")
             assert False
             
+    def loginProcessOther(self, driver, role, prefix):
+        print(role)
+        hashPassword = encodeDecodePassword()
+        # self.open()
+        with open('vplus/testdata/dataUser.json') as json_file:
+            data = json.load(json_file)
+
+        role_data = data.get(role, [])
+        if role_data:
+            username = role_data[0]["username"]
+            password = role_data[0]["password"]
+            print(username)
+            print(password)
+            
+            stringDecode = hashPassword.decode(password)
+            print(stringDecode)
+            
+            self.clickLoginOther(username, stringDecode, prefix)
+            self.assertSuccessLogin()
+            
+            profile = ChooseProfile(driver)
+            assert profile.assertChooseProfile()
+            
+        else:
+            print(f"Role '{role}' not found in the dataUser.json file")
+            assert False
+            
     def loginProcessWithEmail(self, driver, role):
         print(role)
         hashPassword = encodeDecodePassword()
@@ -172,7 +252,7 @@ class LoginPage:
             self.clickButtonLogin()
             
             profile = ChooseProfile(driver)
-            profile.chooseProfileAfterLogin2()
+            profile.chooseProfileAfterLogin()
             
             wait = WebDriverWait(self.driver, 5)
             # profile = objectChooseProfile()

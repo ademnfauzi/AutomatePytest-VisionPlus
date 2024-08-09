@@ -15,6 +15,7 @@ class objectTV:
         self.channelTVNmovies = "//div[@class='channel-serviceid' and text()='46']/following-sibling::div[@class='channel-name' and text()='TVN Movies']"
         self.subscribe = "//span[@translate=''] [text()='Subscribe']"
         self.closeVideoPause = "//button[@class= 'md-icon-button close md-button md-ink-ripple']"
+        self.btnPlayAfterPause = "//div[@class='player-paused layout-align-center-center layout-column']"
         self.frameIklan = "(//iframe[@title='Advertisement'])[1]"
         self.player = "//div[@id='player']"
         self.btnSkipAds = "//div[@class='videoAdUiSkipButtonExperimentalText']"
